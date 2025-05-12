@@ -1,0 +1,689 @@
+app:
+  description: ''
+  icon: money_mouth_face
+  icon_background: '#D5D9EB'
+  mode: advanced-chat
+  name: 企业销售管理
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1747051417570-source-1747052616139-target
+      source: '1747051417570'
+      sourceHandle: source
+      target: '1747052616139'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1747052616139-source-1747052995019-target
+      source: '1747052616139'
+      sourceHandle: source
+      target: '1747052995019'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747052995019-true-llm-target
+      source: '1747052995019'
+      sourceHandle: 'true'
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747052995019-2c3a1e8e-a299-4603-867f-7da1c1233e3c-1747053363092-target
+      source: '1747052995019'
+      sourceHandle: 2c3a1e8e-a299-4603-867f-7da1c1233e3c
+      target: '1747053363092'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747052995019-d4d27a9c-60a6-4490-9249-779114b88f1b-1747054269153-target
+      source: '1747052995019'
+      sourceHandle: d4d27a9c-60a6-4490-9249-779114b88f1b
+      target: '1747054269153'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747052995019-ffbcb194-b9cc-4201-82f8-95a333c0ada2-1747054539927-target
+      source: '1747052995019'
+      sourceHandle: ffbcb194-b9cc-4201-82f8-95a333c0ada2
+      target: '1747054539927'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747052995019-false-1747054699987-target
+      source: '1747052995019'
+      sourceHandle: 'false'
+      target: '1747054699987'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1747053363092-source-1747056435530-target
+      source: '1747053363092'
+      sourceHandle: source
+      target: '1747056435530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1747054269153-source-1747056437873-target
+      source: '1747054269153'
+      sourceHandle: source
+      target: '1747056437873'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1747054539927-source-1747056440168-target
+      source: '1747054539927'
+      sourceHandle: source
+      target: '1747056440168'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1747054699987-source-1747056442521-target
+      source: '1747054699987'
+      sourceHandle: source
+      target: '1747056442521'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1747051417570'
+      position:
+        x: 30
+        y: 334.5
+      positionAbsolute:
+        x: 30
+        y: 334.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747052616139'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus
+          provider: tongyi
+        prompt_template:
+        - id: 6cf270a5-8b51-4202-aa52-ecc0536e880e
+          role: system
+          text: '结合现有数据{{#context#}}和边际收益分析模型：
+
+            1. 计算边际收益：
+
+            边际收益=(单价−单位成本)×销量增量假设边际收益=(单价−单位成本)×销量增量假设
+
+            （假设单位成本 = cogs / Quantity）
+
+            2. 对比边际收益与边际成本：
+
+            o   若边际收益 > 边际成本，可考虑增加库存或促销；
+
+            o   若边际收益 < 边际成本，需调整定价或减少进货。
+
+            回答用户的问题，并提供基于数据的业务优化建议，控制在500字以内'
+        - id: f151f582-4f65-4406-81ba-f39be48e00e8
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 业务重塑能力
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: llm
+      position:
+        x: 939
+        y: 334.5
+      positionAbsolute:
+        x: 939
+        y: 334.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 102
+      id: answer
+      position:
+        x: 1242
+        y: 334.5
+      positionAbsolute:
+        x: 1242
+        y: 334.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - db8704e3-8e0e-4b1d-9079-cb36447d3147
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank
+            provider: tongyi
+          top_k: 4
+        query_variable_selector:
+        - '1747051417570'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 91
+      id: '1747052616139'
+      position:
+        x: 333
+        y: 334.5
+      positionAbsolute:
+        x: 333
+        y: 334.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 762215ec-90af-4c15-9d41-cf2ea8a0e390
+            value: 业务
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        - case_id: 2c3a1e8e-a299-4603-867f-7da1c1233e3c
+          conditions:
+          - comparison_operator: contains
+            id: 7ce7f110-3e84-4529-b3f5-0ba6b3dbb4c6
+            value: 市场
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          logical_operator: and
+        - case_id: d4d27a9c-60a6-4490-9249-779114b88f1b
+          conditions:
+          - comparison_operator: contains
+            id: c86cbaa7-6b03-40bf-b7bb-c752b34a2368
+            value: 客户
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          logical_operator: and
+        - case_id: ffbcb194-b9cc-4201-82f8-95a333c0ada2
+          conditions:
+          - comparison_operator: contains
+            id: f44bf462-493c-4f40-847a-27214d35ae7c
+            value: 风险
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 269
+      id: '1747052995019'
+      position:
+        x: 636
+        y: 334.5
+      positionAbsolute:
+        x: 636
+        y: 334.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747052616139'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus
+          provider: tongyi
+        prompt_template:
+        - id: 1b000514-b76d-4c0c-b7fd-84b697335ef6
+          role: system
+          text: '结合现有数据{{#context#}}和Granger 因果检验。
+
+            目标：验证“节假日”或“天气”等等因素是否显著影响销量。数据需求：
+
+            1.  数据聚合：按日统计总销售额，并标注特别情况如节假日。
+
+            2.  Granger 检验：
+
+            o          原假设：节假日不 Granger 引起销量变化；
+
+            o          若 p 值 < 0.05，拒绝原假设，说明节假日对销量有预测作用。
+
+            回答用户的问题，抓住外部数据，如宏观经济、舆论舆情、竞争对手产品、价格等作为辅助输入，生成市场趋势报告，控制在500字以内'
+        - id: 3ffda355-eff6-467b-943c-6958709f00e5
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 市场洞察能力
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1747053363092'
+      position:
+        x: 939
+        y: 476.5
+      positionAbsolute:
+        x: 939
+        y: 476.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747052616139'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus
+          provider: tongyi
+        prompt_template:
+        - id: f9b00bd2-efc1-4334-9d4e-1ba7ebe35929
+          role: system
+          text: '结合现有数据{{#context#}}和RFM 模型（简化版）
+
+            1.  计算 RFM 指标：
+
+            o         Recency（最近购买）：客户最后一次购买距今的天数；
+
+            o         Frequency（购买频率）：客户历史购买次数；
+
+            o         Monetary（消费金额）：客户累计消费总额。
+
+            2.  客户分群：按 RFM 值分为 3 类（高价值、中价值、低价值）。
+
+            回答用户的问题，精准识别高价值、流失风险或潜在客户，有针对性地给出建议，控制在500字以内'
+        - id: 10eba04a-daca-4beb-b9e0-3695983fe16c
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 客户识别能力
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1747054269153'
+      position:
+        x: 939
+        y: 618.5
+      positionAbsolute:
+        x: 939
+        y: 618.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747052616139'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus
+          provider: tongyi
+        prompt_template:
+        - id: 56b530a7-ca51-4c1e-b22b-7fcf1c52c4d3
+          role: system
+          text: '结合现有数据{{#context#}}和蒙特卡洛模拟（Monte Carlo Simulation）
+
+            预测未来销售额波动，评估库存积压风险。：
+
+            1.  拟合分布：假设销售额服从正态分布，计算均值和标准差。
+
+            2.  模拟未来 30 天销售额：生成 1000 种随机情景。
+
+            3.  计算风险指标：
+
+            o          缺货概率：销售额 > 当前库存的概率；
+
+            o          积压概率：销售额 < 安全库存的概率。
+
+            回答用户的问题，通过内部外部数据，察觉衡量风险，提供应对策略并预演模拟，控制在500字以内'
+        - id: efb8d536-9079-4156-bb31-d6daa8443cec
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 风险预案能力
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1747054539927'
+      position:
+        x: 939
+        y: 760.5
+      positionAbsolute:
+        x: 939
+        y: 760.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747052616139'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus
+          provider: tongyi
+        prompt_template:
+        - id: 12185985-4d9f-4fc5-a5f2-5ad5a0633cfa
+          role: system
+          text: 你是一个智能销售顾问系统，请根据{{#context#}}回答用户的问题，并提供合理的建议，控制在500字以内
+        - id: 5c73bef1-0e79-421c-ab45-4077a76a4269
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 其他
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1747054699987'
+      position:
+        x: 939
+        y: 902.5
+      positionAbsolute:
+        x: 939
+        y: 902.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1747053363092.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 102
+      id: '1747056435530'
+      position:
+        x: 1242
+        y: 476.5
+      positionAbsolute:
+        x: 1242
+        y: 476.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1747054269153.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 102
+      id: '1747056437873'
+      position:
+        x: 1242
+        y: 618.5
+      positionAbsolute:
+        x: 1242
+        y: 618.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1747054539927.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 102
+      id: '1747056440168'
+      position:
+        x: 1242
+        y: 760.5
+      positionAbsolute:
+        x: 1242
+        y: 760.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1747054699987.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 102
+      id: '1747056442521'
+      position:
+        x: 1242
+        y: 902.5
+      positionAbsolute:
+        x: 1242
+        y: 902.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 63.680492089226846
+      y: -140.00000000000006
+      zoom: 0.7000000000000001
